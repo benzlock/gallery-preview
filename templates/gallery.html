@@ -1,0 +1,10 @@
+<html>
+    <body>
+        <h1>{{ root }}</h1>
+        <table>
+            {% for image in images %}
+            <tr><img src="{{ url_for("image", image_id=image.image_id, image_name=image.image_name) }}" height=240></tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

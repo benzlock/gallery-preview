@@ -1,0 +1,22 @@
+<html>
+    <body>
+<script>
+function reveal(gallery_id) {
+    let req = new XMLHttpRequest();
+    req.open("POST", "/reveal/" + gallery_id);
+    req.send();
+}
+</script>
+        <h1>{{ name }}</h1>
+        {% for gallery_id, gallery_name in galleries.get_gallery_names() %}
+        <h2><button onClick="reveal('{{ gallery_id}}')">reveal</button> {{ gallery_name }}</h2>
+        <table>
+            <tr>
+                {% for image in galleries.random_images(gallery_id) %}
+                <td><a href="{{ url_for("gallery", gallery_id=gallery_id) }}"><img src="{{ url_for("image", image_id=image.image_id, image_name=image.image_name) }}" height=240></a></td>
+                {% endfor %}
+            </tr>
+        </table>
+        {% endfor %}
+    </body>
+</html>
